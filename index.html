@@ -11,7 +11,7 @@
 <style>
 :root{--cream:#f7f3ea;--paper:#fffdf8;--green:#304737;--sage:#768873;--wine:#8a5b57;--ink:#293029;--line:#ded8cb;--gold:#b69a62}
 *{box-sizing:border-box} body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,Arial,sans-serif}.hero{text-align:center;padding:58px 20px 30px}.eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--sage);font-weight:600}.hero h1{font:600 clamp(42px,8vw,72px)/.95 'Cormorant Garamond',serif;color:var(--green);margin:12px 0}.hero p{max-width:650px;margin:0 auto;line-height:1.65;color:#62685f}.vine{color:var(--gold);font-size:22px;margin:18px 0 0}.wrap{width:min(1100px,92%);margin:auto;padding-bottom:60px}.map-card{background:var(--paper);padding:10px;border:1px solid var(--line);border-radius:20px;box-shadow:0 16px 45px rgba(48,71,55,.08)}#map{height:460px;border-radius:14px}.note{text-align:center;font-size:13px;color:#70766e;margin:14px 0 42px}.section-title{text-align:center;font:600 38px/1 'Cormorant Garamond',serif;color:var(--green);margin:10px 0 7px}.section-sub{text-align:center;color:#777c74;margin:0 0 26px}.group-label{display:flex;align-items:center;gap:12px;color:var(--green);font-weight:600;margin:28px 0 14px}.group-label:after{content:"";height:1px;background:var(--line);flex:1}.hotels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.hotel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px;position:relative}.tag{display:inline-block;padding:6px 9px;border-radius:30px;background:#e9efe8;color:var(--green);font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}.tag.shuttle{background:#f1e8e5;color:var(--wine)}.hotel h3{font:600 27px/1.05 'Cormorant Garamond',serif;color:var(--green);margin:13px 0 5px}.place{font-size:13px;color:#777c74}.price{margin:18px 0 16px;font-size:14px}.price strong{font-size:18px;color:var(--green)}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{text-decoration:none;padding:10px 13px;border-radius:9px;font-size:13px;font-weight:600;border:1px solid var(--green);color:var(--green)}.btn.primary{background:var(--green);color:white}.footer{text-align:center;margin-top:45px;color:#777c74;font:500 20px 'Cormorant Garamond',serif}@media(max-width:720px){.hero{padding-top:42px}.hotels{grid-template-columns:1fr}#map{height:390px}.hotel{padding:20px}}
-.leaflet-popup-content-wrapper{border-radius:12px}.leaflet-popup-content{font-family:Inter,Arial,sans-serif}.popup-title{font-weight:700;color:#304737;margin-bottom:3px}.popup-note{font-size:12px;color:#666}
+.leaflet-popup-content-wrapper{border-radius:12px}.leaflet-popup-content{font-family:Inter,Arial,sans-serif}.popup-title{font-weight:700;color:#304737;margin-bottom:3px}.popup-note{font-size:12px;color:#666}.event-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:21px;border:3px solid #fff;box-shadow:0 3px 12px rgba(0,0,0,.28)}.wedding-icon{background:#8a5b57}.gettogether-icon{background:#b69a62}
 </style>
 </head>
 <body>
@@ -73,7 +73,16 @@ const hotels=[
 ];
 const bounds=[];
 hotels.forEach(h=>{L.marker([h.lat,h.lng]).addTo(map).bindPopup(`<div class="popup-title">${h.name}</div><div class="popup-note">${h.note}</div>`);bounds.push([h.lat,h.lng])});
-map.fitBounds(bounds,{padding:[35,35],maxZoom:12});
+
+const weddingIcon=L.divIcon({className:'',html:'<div class="event-icon wedding-icon">♥</div>',iconSize:[42,42],iconAnchor:[21,21],popupAnchor:[0,-22]});
+const getTogetherIcon=L.divIcon({className:'',html:'<div class="event-icon gettogether-icon">🥂</div>',iconSize:[42,42],iconAnchor:[21,21],popupAnchor:[0,-22]});
+
+const events=[
+ {name:'Hochzeitslocation · Haldmühle',lat:49.538068,lng:8.201874,note:'Haldmühle 1 · 67281 Bissersheim',icon:weddingIcon},
+ {name:'Get-together am Vorabend',lat:49.4517,lng:8.2119,note:'Schilfstraße 6 · 67067 Ludwigshafen-Maudach',icon:getTogetherIcon}
+];
+events.forEach(e=>{L.marker([e.lat,e.lng],{icon:e.icon,zIndexOffset:1000}).addTo(map).bindPopup(`<div class="popup-title">${e.name}</div><div class="popup-note">${e.note}</div>`);bounds.push([e.lat,e.lng])});
+map.fitBounds(bounds,{padding:[45,45],maxZoom:11});
 </script>
 </body>
 </html>
