@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Übernachten in der Pfalz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--cream:#f7f3ea;--paper:#fffdf8;--green:#304737;--sage:#768873;--wine:#8a5b57;--ink:#293029;--line:#ded8cb;--gold:#b69a62}
+*{box-sizing:border-box} body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,Arial,sans-serif}.hero{text-align:center;padding:58px 20px 30px}.eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--sage);font-weight:600}.hero h1{font:600 clamp(42px,8vw,72px)/.95 'Cormorant Garamond',serif;color:var(--green);margin:12px 0}.hero p{max-width:650px;margin:0 auto;line-height:1.65;color:#62685f}.vine{color:var(--gold);font-size:22px;margin:18px 0 0}.wrap{width:min(1100px,92%);margin:auto;padding-bottom:60px}.map-card{background:var(--paper);padding:10px;border:1px solid var(--line);border-radius:20px;box-shadow:0 16px 45px rgba(48,71,55,.08)}#map{height:460px;border-radius:14px}.note{text-align:center;font-size:13px;color:#70766e;margin:14px 0 42px}.section-title{text-align:center;font:600 38px/1 'Cormorant Garamond',serif;color:var(--green);margin:10px 0 7px}.section-sub{text-align:center;color:#777c74;margin:0 0 26px}.group-label{display:flex;align-items:center;gap:12px;color:var(--green);font-weight:600;margin:28px 0 14px}.group-label:after{content:"";height:1px;background:var(--line);flex:1}.hotels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.hotel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px;position:relative}.tag{display:inline-block;padding:6px 9px;border-radius:30px;background:#e9efe8;color:var(--green);font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}.tag.shuttle{background:#f1e8e5;color:var(--wine)}.hotel h3{font:600 27px/1.05 'Cormorant Garamond',serif;color:var(--green);margin:13px 0 5px}.place{font-size:13px;color:#777c74}.price{margin:18px 0 16px;font-size:14px}.price strong{font-size:18px;color:var(--green)}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{text-decoration:none;padding:10px 13px;border-radius:9px;font-size:13px;font-weight:600;border:1px solid var(--green);color:var(--green)}.btn.primary{background:var(--green);color:white}.footer{text-align:center;margin-top:45px;color:#777c74;font:500 20px 'Cormorant Garamond',serif}@media(max-width:720px){.hero{padding-top:42px}.hotels{grid-template-columns:1fr}#map{height:390px}.hotel{padding:20px}}
+.leaflet-popup-content-wrapper{border-radius:12px}.leaflet-popup-content{font-family:Inter,Arial,sans-serif}.popup-title{font-weight:700;color:#304737;margin-bottom:3px}.popup-note{font-size:12px;color:#666}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="eyebrow">Unsere Hochzeit in der Pfalz</div>
+  <h1>Übernachten<br>in den Weinbergen</h1>
+  <p>Damit ihr nach dem Feiern nicht mehr weit fahren müsst, haben wir ein paar Unterkünfte rund um die Haldmühle für euch zusammengestellt.</p>
+  <div class="vine">❦</div>
+</header>
+<main class="wrap">
+  <div class="map-card"><div id="map"></div></div>
+  <div class="note">Tippt auf einen Marker für weitere Informationen. Die Karte zeigt die Lage der Unterkünfte rund um die Haldmühle.</div>
+
+  <h2 class="section-title">Unsere Hotelempfehlungen</h2>
+  <p class="section-sub">Direkt an der Location oder bequem mit Shuttle erreichbar.</p>
+
+  <div class="group-label">Zu Fuß / kein Shuttle benötigt</div>
+  <div class="hotels">
+    <article class="hotel">
+      <span class="tag">Kein Shuttle nötig</span>
+      <h3>WeinQuartier Bissersheim</h3><div class="place">Bissersheim · direkt neben der Haldmühle</div>
+      <div class="price">Doppelzimmer: <strong>131–141 €</strong> / Nacht</div>
+      <div class="actions"><a class="btn primary" href="https://www.weinquartier-bissersheim.de/zimmer" target="_blank" rel="noopener">Zimmer ansehen</a><a class="btn" href="https://www.google.com/maps/search/?api=1&query=WeinQuartier+Bissersheim" target="_blank" rel="noopener">Karte</a></div>
+    </article>
+    <article class="hotel">
+      <span class="tag">Kein Shuttle nötig</span>
+      <h3>Gästehaus Eschment</h3><div class="place">Bissersheim</div>
+      <div class="price">Doppelzimmer: <strong>115–125 €</strong> / Nacht</div>
+      <div class="actions"><a class="btn primary" href="https://www.gaestehaus-eschment.de/zimmer-preise/" target="_blank" rel="noopener">Zimmer ansehen</a><a class="btn" href="https://www.google.com/maps/search/?api=1&query=G%C3%A4stehaus+Eschment+Bissersheim" target="_blank" rel="noopener">Karte</a></div>
+    </article>
+  </div>
+
+  <div class="group-label">Mit Shuttle</div>
+  <div class="hotels">
+    <article class="hotel">
+      <span class="tag shuttle">Shuttle vorgesehen</span>
+      <h3>Hotel Exquisite erleben</h3><div class="place">Bockenheim an der Weinstraße</div>
+      <div class="price">Doppelzimmer: <strong>ca. 85–100 €</strong> / Nacht</div>
+      <div class="actions"><a class="btn primary" href="https://www.exquisite-erleben.de/" target="_blank" rel="noopener">Hotel ansehen</a><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Exquisite+erleben+Bockenheim+an+der+Weinstra%C3%9Fe" target="_blank" rel="noopener">Karte</a></div>
+    </article>
+    <article class="hotel">
+      <span class="tag shuttle">Shuttle vorgesehen</span>
+      <h3>Hotel Weinheber</h3><div class="place">Freinsheim</div>
+      <div class="price">Doppelzimmer: <strong>ca. 96–105 €</strong> / Nacht</div>
+      <div class="actions"><a class="btn primary" href="https://www.hotel-restaurant-hornung.de/hotel/" target="_blank" rel="noopener">Hotel ansehen</a><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Hotel+Weinheber+Freinsheim" target="_blank" rel="noopener">Karte</a></div>
+    </article>
+  </div>
+  <div class="footer">Wir freuen uns darauf, mit euch in der Pfalz zu feiern. ❦</div>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map=L.map('map',{scrollWheelZoom:false}).setView([49.53,8.20],12);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
+const hotels=[
+  {name:'WeinQuartier Bissersheim',lat:49.537014,lng:8.201998,note:'Kein Shuttle benötigt'},
+  {name:'Gästehaus Eschment',lat:49.5359,lng:8.2040,note:'Kein Shuttle benötigt'},
+  {name:'Hotel Exquisite erleben',lat:49.606,lng:8.181,note:'Shuttle vorgesehen'},
+  {name:'Hotel Weinheber',lat:49.506,lng:8.210,note:'Shuttle vorgesehen'}
+];
+const bounds=[];
+hotels.forEach(h=>{L.marker([h.lat,h.lng]).addTo(map).bindPopup(`<div class="popup-title">${h.name}</div><div class="popup-note">${h.note}</div>`);bounds.push([h.lat,h.lng])});
+map.fitBounds(bounds,{padding:[35,35],maxZoom:12});
+</script>
+</body>
+</html>
